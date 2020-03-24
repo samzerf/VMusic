@@ -1,0 +1,19 @@
+{
+  "name": "vue-music",
+  "version": "1.0.0",
+  "description": "the pro of music player ",
+  "author": "sanjayf@foxmail.com",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "debug": "^4.1.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^8.0.7",
+    "koa-static": "^5.0.0",
+    "koa2-connect-history-api-fallback": "^0.1.2",
+    "memory-cache": "^0.2.0"
+  }
+}
