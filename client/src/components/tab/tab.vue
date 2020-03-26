@@ -22,6 +22,11 @@ export default {}
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   .tab
+    position: fixed
+    z-index: 1000
+    bottom : 0
+    left: 0
+    right: 0
     display: flex
     height: 44px
     line-height: 44px

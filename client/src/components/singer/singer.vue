@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     handlePlaylist(playlist) {
-      const bottom = playlist && playlist.length ? '60px' : 0
+      const bottom = playlist && playlist.length ? '104px' : '44px'
       this.$refs.singer.style.bottom = bottom
       this.$refs.listView.refresh()
     },
@@ -102,7 +102,7 @@ export default {
 <style scoped lang="stylus" rel="stylesheet/stylus">
 .singer
     position: fixed
-    top: 88px
-    bottom: 0
+    top: 44px
+    bottom: 44px
     width: 100%
 </style>

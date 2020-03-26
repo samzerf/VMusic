@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     handlePlaylist(playlist) {
-      const bottom = playlist && playlist.length ? '60px' : 0
+      const bottom = playlist && playlist.length ? '104px' : '44px'
       this.$refs.shortcutWrapper.style.bottom = bottom
       this.$refs.shortcut.refresh()
       this.$refs.searchResult.style.bottom = bottom
@@ -148,6 +148,6 @@ export default {
     .search-result
       position: fixed
       width: 100%
-      top: 178px
-      bottom: 0
+      top: 134px
+      bottom: 44px
 </style>

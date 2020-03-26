@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     handlePlaylist(playlist) {
-      const bottom = playlist && playlist.length ? '60px' : 0
+      const bottom = playlist && playlist.length ? '104px' : '44px'
       this.$refs.recommed.style.bottom = bottom
       this.$refs.scroll.refresh()
     },
@@ -113,8 +113,8 @@ export default {
   .recommed
     position: fixed
     width: 100%
-    top: 88px
-    bottom: 0
+    top: 44px
+    bottom: 44px
     .recommend-content
       height: 100%
       overflow: hidden

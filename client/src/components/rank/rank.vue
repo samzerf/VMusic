@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     handlePlaylist(playlist) {
-      const bottom = playlist && playlist.length ? '60px' : 0
+      const bottom = playlist && playlist.length ? '104px' : '44px'
       this.$refs.rank.style.bottom = bottom
       this.$refs.toplist.refresh()
     },
@@ -76,8 +76,8 @@ export default {
   .rank
     position: fixed
     width: 100%
-    top: 88px
-    bottom: 0
+    top: 44px
+    bottom: 44px
     .toplist
       height: 100%
       overflow: hidden
