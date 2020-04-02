@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    selectItem(index) {
+    selectItem (index) {
       this.$emit('switch', index)
     }
   }

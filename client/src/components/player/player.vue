@@ -141,27 +141,27 @@ export default {
       'playing',
       'currentIndex'
     ]),
-    percent() {
+    percent () {
       return this.currentTime / this.currentSong.duration
     },
-    playIcon() {
+    playIcon () {
       return this.playing ? 'icon-pause' : 'icon-play'
     },
-    miniIcon() {
+    miniIcon () {
       return this.playing ? 'icon-pause-mini' : 'icon-play-mini'
     },
-    cdCls() {
+    cdCls () {
       return this.playing ? 'play' : 'play paused'
     },
-    disableCls() {
+    disableCls () {
       return this.songReady ? '' : 'disable'
     }
   },
-  created() {
+  created () {
     this.touch = {}
   },
   watch: {
-    currentSong(newSong, oldSong) {
+    currentSong (newSong, oldSong) {
       if (!newSong.id) {
         return
       }
@@ -181,7 +181,7 @@ export default {
       // }, 1000)
       })
     },
-    playing(newPlaying) {
+    playing (newPlaying) {
       const audio = this.$refs.audio
       this.$nextTick(() => {
         newPlaying ? audio.play() : audio.pause()
@@ -190,15 +190,15 @@ export default {
   },
   methods: {
     ...mapMutations({
-      'setFullScreen': 'SET_FULL_SCREEN'
+      setFullScreen: 'SET_FULL_SCREEN'
     }),
     ...mapActions([
       'savePlayHistory'
     ]),
-    showPlaylist() {
+    showPlaylist () {
       this.$refs.playlist.show()
     },
-    getLyric() {
+    getLyric () {
       this.currentSong.getLyric().then(lyric => {
         this.currentLyric = new Lyric(lyric, this.handleLyric)
         if (this.playing) {
@@ -210,27 +210,27 @@ export default {
         this.playLyric = ''
       })
     },
-    handleLyric({lineNum, txt}) {
+    handleLyric ({ lineNum, txt }) {
       this.currentLineNum = lineNum
       if (lineNum > 5) {
-        let lineEl = this.$refs.lyricLine[lineNum - 5]
+        const lineEl = this.$refs.lyricLine[lineNum - 5]
         this.$refs.lyricList.scrollToElement(lineEl, 1000)
       } else {
         this.$refs.lyricList.scrollTo(0, 0, 1000)
       }
       this.playLyric = txt
     },
-    enter(el, done) {
-      let { x, y, scale } = this._getMiniPosAndScale()
-      let animation = {
+    enter (el, done) {
+      const { x, y, scale } = this._getMiniPosAndScale()
+      const animation = {
         0: {
           transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
         },
         60: {
-          transform: `translate3d(0, 0, 0) scale(1.1)`
+          transform: 'translate3d(0, 0, 0) scale(1.1)'
         },
         100: {
-          transform: `translate3d(0, 0, 0) scale(1)`
+          transform: 'translate3d(0, 0, 0) scale(1)'
         }
       }
       animations.registerAnimation({
@@ -243,12 +243,12 @@ export default {
       })
       animations.runAnimation(this.$refs.cdWrapper, 'move', done)
     },
-    afterEnter() {
+    afterEnter () {
       animations.unregisterAnimation('move')
       this.$refs.cdWrapper.style.animation = ''
     },
-    leave(el, done) {
-      let { x, y, scale } = this._getMiniPosAndScale()
+    leave (el, done) {
+      const { x, y, scale } = this._getMiniPosAndScale()
       this.$refs.cdWrapper.style.transition = 'all .4s'
       this.$refs.cdWrapper.style[transform] = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
       const timer = setTimeout(done, 400)
@@ -257,17 +257,17 @@ export default {
         done()
       })
     },
-    afterLeave() {
+    afterLeave () {
       this.$refs.cdWrapper.style.transition = ''
       this.$refs.cdWrapper.style[transform] = ''
     },
-    close() {
+    close () {
       this.setFullScreen(false)
     },
-    open() {
+    open () {
       this.setFullScreen(true)
     },
-    _getMiniPosAndScale() { // 获取唱片缩小时的位置和缩小比例
+    _getMiniPosAndScale () { // 获取唱片缩小时的位置和缩小比例
       const targetWidth = 40
       const paddingLeft = 40 // 小唱片圆心到页面左边的距离
       const paddingBottom = 30 // 小唱片圆心到页面左边的距离
@@ -282,7 +282,7 @@ export default {
         scale
       }
     },
-    togglePlaying() {
+    togglePlaying () {
       if (!this.songReady) {
         return
       }
@@ -291,13 +291,13 @@ export default {
         this.currentLyric.togglePlay()
       }
     },
-    middleTouchStart(e) {
+    middleTouchStart (e) {
       this.touch.initiated = true
       const touch = e.touches[0]
       this.touch.startX = touch.pageX
       this.touch.startY = touch.pageY
     },
-    middleTouchMove(e) {
+    middleTouchMove (e) {
       if (!this.touch.initiated) {
         return
       }
@@ -316,7 +316,7 @@ export default {
       const opacity = 1 - this.touch.percent
       this.$refs.middleL.style.opacity = opacity
     },
-    middleTouchEnd() {
+    middleTouchEnd () {
       let offsetWidth,
         opacity
       if (this.currentShow === 'cd') {
@@ -344,21 +344,21 @@ export default {
       this.$refs.middleL.style[transitionDuration] = `${time}ms`
       this.$refs.middleL.style.opacity = opacity
     },
-    loop() {
+    loop () {
       this.$refs.audio.currentTime = 0
       this.$refs.audio.play()
       if (this.currentLyric) {
         this.currentLyric.seek(0)
       }
     },
-    end() {
+    end () {
       if (this.mode !== playMode.loop) {
         this.next()
       } else {
         this.loop()
       }
     },
-    next() {
+    next () {
       if (!this.songReady) {
         return
       }
@@ -376,7 +376,7 @@ export default {
       }
       this.songReady = false
     },
-    prev() {
+    prev () {
       if (!this.songReady) {
         return
       }
@@ -394,14 +394,14 @@ export default {
       }
       this.songReady = false
     },
-    ready() {
+    ready () {
       this.songReady = true
       this.savePlayHistory(this.currentSong)
     },
-    error() {
+    error () {
       this.songReady = true
     },
-    progressChange(percent) {
+    progressChange (percent) {
       const currentTime = percent * this.currentSong.duration
       this.currentTime = this.$refs.audio.currentTime = currentTime
       if (!this.playing) {
@@ -411,16 +411,16 @@ export default {
         this.currentLyric.seek(currentTime * 1000)
       }
     },
-    updateTime(e) {
+    updateTime (e) {
       this.currentTime = e.target.currentTime
     },
-    formatTime(t) {
+    formatTime (t) {
       t = t | 0
       const minute = t / 60 | 0
       const second = this._pad(t % 60)
       return `${minute}:${second}`
     },
-    _pad(num, n = 2) {
+    _pad (num, n = 2) {
       let len = String(num).length
       while (len < n) {
         num = '0' + num

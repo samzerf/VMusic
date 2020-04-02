@@ -39,7 +39,7 @@ export default {
       default: 20
     }
   },
-  mounted() {
+  mounted () {
     setTimeout(() => {
       this._initScroll()
     }, 20)
@@ -54,7 +54,7 @@ export default {
   },
 
   methods: {
-    _initScroll() {
+    _initScroll () {
       if (!this.$refs.wrapper) {
         return
       }
@@ -75,7 +75,7 @@ export default {
 
       if (this.pullup) {
         this.scroll.on('scrollEnd', () => {
-          const {y, maxScrollY} = this.scroll
+          const { y, maxScrollY } = this.scroll
           if (y <= (maxScrollY + 50)) {
             this.$emit('scrollToEnd')
           }
@@ -88,19 +88,19 @@ export default {
         })
       }
     },
-    enable() {
+    enable () {
       this.scroll && this.scroll.enable()
     },
-    disable() {
+    disable () {
       this.scroll && this.scroll.disable()
     },
-    refresh() {
+    refresh () {
       this.scroll && this.scroll.refresh()
     },
-    scrollTo() {
+    scrollTo () {
       this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
     },
-    scrollToElement() {
+    scrollToElement () {
       this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
     }
   }

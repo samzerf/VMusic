@@ -3,14 +3,14 @@ import { playMode } from 'common/js/config'
 import { shuffle } from 'common/js/util'
 import { saveSearch, deleteSearch, clearSearch, savePlay, saveFavoriteList, deleteFavoriteList } from 'common/js/cache'
 
-function findIndex(list, song) {
+function findIndex (list, song) {
   return list.findIndex(item => item.id === song.id)
 }
 
 export const selectPlay = ({ commit, state }, { list, index }) => {
   commit(types.SET_SEQUENCE_LIST, list)
   if (state.mode === playMode.random) {
-    let randomList = shuffle(list)
+    const randomList = shuffle(list)
     commit(types.SET_PLAYLIST, randomList)
     index = findIndex(randomList, list[index])
   } else {
@@ -31,13 +31,13 @@ export const randomPlay = ({ commit }, { list }) => {
 }
 
 export const insertSong = ({ commit, state }, song) => {
-  let playList = state.playList.slice(0)
-  let sequenceList = state.sequenceList.slice(0)
+  const playList = state.playList.slice(0)
+  const sequenceList = state.sequenceList.slice(0)
   let currentIndex = state.currentIndex
-  let currentSong = playList[currentIndex]
+  const currentSong = playList[currentIndex]
 
   // 查找当前列表中是否有待插入的歌曲并返回其索引
-  let fpIndex = findIndex(playList, song)
+  const fpIndex = findIndex(playList, song)
   // 在当前播放索引的后面插入一首歌曲，所以索引加1
   currentIndex++
   // 插入歌曲到索引位置
@@ -53,8 +53,8 @@ export const insertSong = ({ commit, state }, song) => {
   }
 
   // 处理正常排序的列表
-  let fsIndex = findIndex(sequenceList, song)
-  let currentSIndex = findIndex(sequenceList, currentSong) + 1
+  const fsIndex = findIndex(sequenceList, song)
+  const currentSIndex = findIndex(sequenceList, currentSong) + 1
   sequenceList.splice(currentSIndex, 0, song)
   if (fsIndex > -1) {
     if (fsIndex > currentSIndex) {
@@ -83,8 +83,8 @@ export const clearSearchHistory = ({ commit }) => {
 }
 
 export const deleteSong = ({ commit, state }, song) => {
-  let playList = state.playList.slice(0)
-  let sequenceList = state.sequenceList.slice(0)
+  const playList = state.playList.slice(0)
+  const sequenceList = state.sequenceList.slice(0)
   let currentIndex = state.currentIndex
   const pIndex = findIndex(playList, song)
   playList.splice(pIndex, 1)

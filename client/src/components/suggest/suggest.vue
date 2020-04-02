@@ -52,7 +52,7 @@ export default {
     Loading,
     NoResult
   },
-  data() {
+  data () {
     return {
       page: 1,
       result: [],
@@ -62,12 +62,12 @@ export default {
     }
   },
   watch: {
-    query() {
+    query () {
       this._search()
     }
   },
   methods: {
-    selectItem(item) {
+    selectItem (item) {
       if (item.type === TYPE_SINGER) {
         const singer = new Singer({
           id: item.singermid,
@@ -82,25 +82,25 @@ export default {
       }
       this.$emit('select')
     },
-    getIconCls(item) {
+    getIconCls (item) {
       if (item.type === TYPE_SINGER) {
         return 'icon-mine'
       }
       return 'icon-music'
     },
-    getDisplayName(item) {
+    getDisplayName (item) {
       if (item.type === TYPE_SINGER) {
         return item.singername
       }
       return `${item.name}-${item.singer}`
     },
-    listScroll() {
+    listScroll () {
       this.$emit('listScroll')
     },
-    refresh() {
+    refresh () {
       this.$refs.suggest.refresh()
     },
-    _search() {
+    _search () {
       this.hasMore = true
       this.page = 1
       this.$refs.suggest.scrollTo(0, 0)
@@ -113,14 +113,14 @@ export default {
         }
       })
     },
-    _checkMore(data) {
+    _checkMore (data) {
       const song = data.song
-      const {curnum, curpage, totalnum} = song
+      const { curnum, curpage, totalnum } = song
       if (!song.list.length || (curnum + (curpage - 1) * perpage >= totalnum)) {
         this.hasMore = false
       }
     },
-    searchMore() {
+    searchMore () {
       if (!this.hasMore) {
         return
       }
@@ -134,20 +134,20 @@ export default {
         }
       })
     },
-    _genResult(data) {
-      let ret = []
+    _genResult (data) {
+      const ret = []
       if (data.zhida && data.zhida.singerid && this.page === 1) {
         ret.push({
           ...data.zhida,
-          ...{type: TYPE_SINGER}
+          ...{ type: TYPE_SINGER }
         })
       }
       return processSongsUrl(this._normalizeSongs(data.song.list)).then(songs => {
         return ret.concat(songs)
       })
     },
-    _normalizeSongs(songs) {
-      let ret = []
+    _normalizeSongs (songs) {
+      const ret = []
       songs.forEach(song => {
         if (isValidMusic(song)) {
           ret.push(createSong(song))
@@ -156,7 +156,7 @@ export default {
       return ret
     },
     ...mapMutations({
-      'setSinger': 'SET_SINGER'
+      setSinger: 'SET_SINGER'
     }),
     ...mapActions(['insertSong'])
   }

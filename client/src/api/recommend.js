@@ -2,15 +2,15 @@ import axios from 'axios'
 import { commonParams, recommandRequestConfigData } from './config'
 
 // 获取推荐列表轮播数据
-export function getRecommend() {
+export function getRecommend () {
   const url = '/api/getRecommend'
   const data = Object.assign({
     '-': 'recom' + (Math.random() + '').replace('0.', ''),
-    'loginUin': 0,
-    'hostUin': 0,
-    'platform': 'yqq.json',
-    'needNewCode': 0,
-    'data': recommandRequestConfigData
+    loginUin: 0,
+    hostUin: 0,
+    platform: 'yqq.json',
+    needNewCode: 0,
+    data: recommandRequestConfigData
   }, commonParams)
 
   return axios.get(url, {
@@ -21,7 +21,7 @@ export function getRecommend() {
 }
 
 // 获取歌单列表
-export function getDiscList() {
+export function getDiscList () {
   const url = '/api/getDiscList'
 
   const data = Object.assign({}, commonParams, {
@@ -44,7 +44,7 @@ export function getDiscList() {
 }
 
 // 获取某个歌单歌曲列表
-export function getDiscSongList(disstid) {
+export function getDiscSongList (disstid) {
   const url = '/api/getDiscSongList'
 
   const data = Object.assign({}, commonParams, {

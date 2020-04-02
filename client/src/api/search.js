@@ -15,7 +15,7 @@ export function getHotKey () {
 }
 
 // 搜索歌曲或歌手
-export function search(searchKey, page, showSinger, perpage) {
+export function search (searchKey, page, showSinger, perpage) {
   const url = '/api/search'
 
   const data = Object.assign({}, commonParams, {

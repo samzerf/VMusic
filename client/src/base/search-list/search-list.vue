@@ -20,10 +20,10 @@ export default {
     }
   },
   methods: {
-    selectItem(item) {
+    selectItem (item) {
       this.$emit('select', item)
     },
-    deleteItem(item) {
+    deleteItem (item) {
       this.$emit('delete', item)
     }
   }

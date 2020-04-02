@@ -26,49 +26,49 @@ export default {
     }
   },
   watch: {
-    percent(newPercent) {
+    percent (newPercent) {
       if (newPercent < 0 || this.touch.init) {
         return
       }
-      let barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
-      let offset = newPercent * barWidth
+      const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
+      const offset = newPercent * barWidth
       this._offset(offset)
     }
   },
-  created() {
+  created () {
     this.touch = {}
   },
   methods: {
-    _offset(offset) {
+    _offset (offset) {
       this.$refs.progress.style.width = `${offset}px`
       this.$refs.progressBtn.style[transform] = `translate3d(${offset}px, 0, 0)`
     },
-    _getPercent() {
-      let barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
-      let progressWidth = this.$refs.progress.clientWidth
-      let percent = progressWidth / barWidth
+    _getPercent () {
+      const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
+      const progressWidth = this.$refs.progress.clientWidth
+      const percent = progressWidth / barWidth
       return percent
     },
-    touchstart(e) {
+    touchstart (e) {
       this.touch.init = true
       this.touch.left = this.$refs.progress.clientWidth
       this.touch.startX = e.touches[0].pageX
     },
-    touchmove(e) {
+    touchmove (e) {
       if (!this.touch.init) {
         return
       }
-      let deltaX = e.touches[0].pageX - this.touch.startX
-      let offset = Math.min(Math.max(0, this.touch.left + deltaX), this.$refs.progressBar.clientWidth - progressBtnWidth)
+      const deltaX = e.touches[0].pageX - this.touch.startX
+      const offset = Math.min(Math.max(0, this.touch.left + deltaX), this.$refs.progressBar.clientWidth - progressBtnWidth)
       this._offset(offset)
     },
-    touchend(e) {
+    touchend (e) {
       this.touch.init = false
       this.$emit('change', this._getPercent())
     },
-    progressClick(e) {
-      let rect = this.$refs.progress.getBoundingClientRect()
-      let offset = e.pageX - rect.left
+    progressClick (e) {
+      const rect = this.$refs.progress.getBoundingClientRect()
+      const offset = e.pageX - rect.left
       this._offset(offset)
       this.$emit('change', this._getPercent())
     }

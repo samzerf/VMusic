@@ -6,19 +6,19 @@ export const playlistMixin = {
   computed: {
     ...mapGetters(['playList'])
   },
-  mounted() {
+  mounted () {
     this.handlePlaylist(this.playList)
   },
-  activated() {
+  activated () {
     this.handlePlaylist(this.playList)
   },
   watch: {
-    playList(newList) {
+    playList (newList) {
       this.handlePlaylist(newList)
     }
   },
   methods: {
-    handlePlaylist() {
+    handlePlaylist () {
       throw new Error('component must implement handlePlaylist method!')
     }
   }
@@ -26,7 +26,7 @@ export const playlistMixin = {
 
 export const playerMixin = {
   computed: {
-    iconMode() {
+    iconMode () {
       return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
     },
     ...mapGetters([
@@ -38,7 +38,7 @@ export const playerMixin = {
     ])
   },
   methods: {
-    changeMode() {
+    changeMode () {
       const mode = (this.mode + 1) % 3
       this.setPlayMode(mode)
       let list = null
@@ -50,24 +50,24 @@ export const playerMixin = {
       this.resetCurrentIndex(list)
       this.setPlayList(list)
     },
-    resetCurrentIndex(list) {
-      let index = list.findIndex(item => item.id === this.currentSong.id)
+    resetCurrentIndex (list) {
+      const index = list.findIndex(item => item.id === this.currentSong.id)
       this.setCurrentIndex(index)
     },
-    toggleFavorite(song) {
+    toggleFavorite (song) {
       if (this.isFavorite(song)) {
         this.deleteFavorite(song)
       } else {
         this.saveFavorite(song)
       }
     },
-    getFavoriteIcon(song) {
+    getFavoriteIcon (song) {
       if (this.isFavorite(song)) {
         return 'icon-favorite'
       }
       return 'icon-not-favorite'
     },
-    isFavorite(song) {
+    isFavorite (song) {
       const index = this.favoriteList.findIndex(item => {
         return item.id === song.id
       })
@@ -87,7 +87,7 @@ export const playerMixin = {
 }
 
 export const searchMixin = {
-  data() {
+  data () {
     return {
       query: '',
       refreshDelay: 120
@@ -97,16 +97,16 @@ export const searchMixin = {
     ...mapGetters(['searchHistory'])
   },
   methods: {
-    blurInput() {
+    blurInput () {
       this.$refs.searchBox.blur()
     },
-    addQuery(query) {
+    addQuery (query) {
       this.$refs.searchBox.setQuery(query)
     },
-    onQueryChange(query) {
+    onQueryChange (query) {
       this.query = query
     },
-    saveSearch() {
+    saveSearch () {
       this.saveSearchHistory(this.query)
     },
     ...mapActions([

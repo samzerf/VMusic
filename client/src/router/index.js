@@ -1,61 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Recommend from 'components/recommend/recommend'
-// import Rank from 'components/rank/rank'
-// import Search from 'components/search/search'
-// import Singer from 'components/singer/singer'
-// import SingerDetail from 'components/singer-detail/singer-detail'
-// import Disc from 'components/disc/disc'
-// import Toplist from 'components/toplist/toplist'
-// import UserCenter from 'components/user-center/user-center'
 
-const Recommend = resolve => {
-  import('components/recommend/recommend').then(mod => {
-    resolve(mod)
-  })
-}
-
-const Rank = resolve => {
-  import('components/rank/rank').then(mod => {
-    resolve(mod)
-  })
-}
-
-const Search = resolve => {
-  import('components/search/search').then(mod => {
-    resolve(mod)
-  })
-}
-
-const Singer = resolve => {
-  import('components/singer/singer').then(mod => {
-    resolve(mod)
-  })
-}
-
-const SingerDetail = resolve => {
-  import('components/singer-detail/singer-detail').then(mod => {
-    resolve(mod)
-  })
-}
-
-const Disc = resolve => {
-  import('components/disc/disc').then(mod => {
-    resolve(mod)
-  })
-}
-
-const Toplist = resolve => {
-  import('components/toplist/toplist').then(mod => {
-    resolve(mod)
-  })
-}
-
-const UserCenter = resolve => {
-  import('components/user-center/user-center').then(mod => {
-    resolve(mod)
-  })
-}
+const Recommend = () => import(/* webpackChunkName: "recommend" */ 'views/recommend/recommend')
+const Rank = () => import(/* webpackChunkName: "rank" */ 'views/rank/rank')
+const Search = () => import(/* webpackChunkName: "search" */ 'views/search/search')
+const Singer = () => import(/* webpackChunkName: "singer" */ 'views/singer/singer')
+const SingerDetail = () => import(/* webpackChunkName: "singer-detail" */ 'views/singer-detail/singer-detail')
+const Disc = () => import(/* webpackChunkName: "disc" */ 'views/disc/disc')
+const Toplist = () => import(/* webpackChunkName: "toplist" */ 'views/toplist/toplist')
+const UserCenter = () => import(/* webpackChunkName: "user-center" */ 'views/user-center/user-center')
 
 Vue.use(Router)
 
