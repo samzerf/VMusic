@@ -1,12 +1,11 @@
-import { commonParams } from './config'
+import { commonParams, ERR_OK } from './config'
 import { getUid } from 'common/js/uid'
 import axios from 'axios'
-import { ERR_OK } from 'api/config'
 
-export function getSongsUrl(songs) {
+export function getSongsUrl (songs) {
   const url = '/api/getPurlUrl'
-  let mids = ['0049T4N609ym6K'] // 发现周杰伦的某些歌，放在mids的第一位会请求不到，这里写死一个hardcode的可以成功的mid
-  let types = [0]
+  const mids = ['0049T4N609ym6K'] // 发现周杰伦的某些歌，放在mids的第一位会请求不到，这里写死一个hardcode的可以成功的mid
+  const types = [0]
   songs.forEach(song => {
     mids.push(song.mid)
     types.push(0)
@@ -53,15 +52,15 @@ export function getSongsUrl(songs) {
   delete params.uin
   return new Promise((resolve, reject) => {
     let tryTime = 3
-    function request() {
+    function request () {
       axios.get(url, {
         params
       }).then(res => {
         res = res.data
         if (res.code === ERR_OK) {
-          let res0 = res.req_0
+          const res0 = res.req_0
           if (res0.code === ERR_OK) {
-            let purlMap = {}
+            const purlMap = {}
             res0.data.midurlinfo.forEach(song => {
               if (song.purl) {
                 purlMap[song.songmid] = song.purl
@@ -82,7 +81,7 @@ export function getSongsUrl(songs) {
         retry()
       })
     }
-    function retry() {
+    function retry () {
       if (--tryTime >= 0) {
         request()
       } else {
@@ -93,7 +92,7 @@ export function getSongsUrl(songs) {
   })
 }
 
-export function getLyric(mid) {
+export function getLyric (mid) {
   const url = '/api/lyric'
   const data = Object.assign({}, commonParams, {
     '-': 'MusicJsonCallback_lrc',

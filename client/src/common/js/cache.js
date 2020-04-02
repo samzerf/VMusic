@@ -9,12 +9,12 @@ const PLAY_MAX_LENGTH = 200
 const FAVORITE_KEY = '__favorite__'
 const FAVORITE_MAX_LENGTH = 200
 
-export function loadSearch() {
+export function loadSearch () {
   return storage.get(SEARCH_KEY, [])
 }
 
-export function saveSearch(query) {
-  let searches = loadSearch()
+export function saveSearch (query) {
+  const searches = loadSearch()
   insertArray(searches, query, item => {
     return item === query
   }, SEARCH_MAX_LENGTH)
@@ -22,8 +22,8 @@ export function saveSearch(query) {
   return searches
 }
 
-export function deleteSearch(query) {
-  let searches = loadSearch()
+export function deleteSearch (query) {
+  const searches = loadSearch()
   deleteFromArray(searches, item => {
     return item === query
   })
@@ -31,17 +31,17 @@ export function deleteSearch(query) {
   return searches
 }
 
-export function clearSearch() {
+export function clearSearch () {
   storage.remove(SEARCH_KEY)
   return []
 }
 
-export function loadPlay() {
+export function loadPlay () {
   return storage.get(PLAY_KEY, [])
 }
 
-export function savePlay(song) {
-  let songs = loadPlay()
+export function savePlay (song) {
+  const songs = loadPlay()
   insertArray(songs, song, item => {
     return item.id === song.id
   }, PLAY_MAX_LENGTH)
@@ -49,12 +49,12 @@ export function savePlay(song) {
   return songs
 }
 
-export function loadFavorite() {
+export function loadFavorite () {
   return storage.get(FAVORITE_KEY, [])
 }
 
-export function saveFavoriteList(song) {
-  let songs = loadFavorite()
+export function saveFavoriteList (song) {
+  const songs = loadFavorite()
   insertArray(songs, song, item => {
     return item.id === song.id
   }, FAVORITE_MAX_LENGTH)
@@ -62,8 +62,8 @@ export function saveFavoriteList(song) {
   return songs
 }
 
-export function deleteFavoriteList(song) {
-  let songs = loadFavorite()
+export function deleteFavoriteList (song) {
+  const songs = loadFavorite()
   deleteFromArray(songs, item => {
     return item.id === song.id
   })
@@ -71,7 +71,7 @@ export function deleteFavoriteList(song) {
   return songs
 }
 
-function insertArray(arr, val, compare, maxLength) {
+function insertArray (arr, val, compare, maxLength) {
   const index = arr.findIndex(compare)
   if (index === 0) {
     return
@@ -85,7 +85,7 @@ function insertArray(arr, val, compare, maxLength) {
   }
 }
 
-function deleteFromArray(arr, compare) {
+function deleteFromArray (arr, compare) {
   const index = arr.findIndex(compare)
   if (index > -1) {
     arr.splice(index, 1)

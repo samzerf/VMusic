@@ -51,7 +51,7 @@ import { playerMixin } from 'common/js/mixin'
 
 export default {
   mixins: [playerMixin],
-  data() {
+  data () {
     return {
       showFlag: false,
       refreshDelay: 120
@@ -63,12 +63,12 @@ export default {
     AddSong
   },
   computed: {
-    iconText() {
+    iconText () {
       return this.mode === playMode.sequence ? '顺序播放' : this.mode === playMode.loop ? '单曲循环' : '随机播放'
     }
   },
   watch: {
-    currentSong(newSong, oldSong) {
+    currentSong (newSong, oldSong) {
       if (!this.showFlag || newSong.id === oldSong.id) {
         return
       }
@@ -80,13 +80,13 @@ export default {
       'deleteSong',
       'clearSongList'
     ]),
-    confirmClear() {
+    confirmClear () {
       this.clearSongList()
     },
-    showConfirm() {
+    showConfirm () {
       this.$refs.confirm.show()
     },
-    selectItem(item, index) {
+    selectItem (item, index) {
       if (this.mode === playMode.random) {
         index = this.playList.findIndex(song => {
           return song.id === item.id
@@ -95,35 +95,35 @@ export default {
       this.setCurrentIndex(index)
       this.setPlayingState(true)
     },
-    deleteOne(song) {
+    deleteOne (song) {
       this.deleteSong(song)
       if (!this.playList.length) {
         this.hide()
       }
     },
-    scrollToCurrent(current) {
-      let index = this.sequenceList.findIndex(song => {
+    scrollToCurrent (current) {
+      const index = this.sequenceList.findIndex(song => {
         return song.id === current.id
       })
       this.$refs.listContent.scrollToElement(this.$refs.listItem[index], 300)
     },
-    getCurrentIcon(item) {
+    getCurrentIcon (item) {
       if (this.currentSong && this.currentSong.id === item.id) {
         return 'icon-play'
       }
       return ''
     },
-    hide() {
+    hide () {
       this.showFlag = false
     },
-    show() {
+    show () {
       this.showFlag = true
       setTimeout(() => {
         this.$refs.listContent.refresh()
         this.scrollToCurrent(this.currentSong)
       }, 20)
     },
-    addSong() {
+    addSong () {
       this.$refs.addSong.show()
     }
   }

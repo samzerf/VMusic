@@ -15,7 +15,7 @@ export default class Song {
     this.url = url
   }
 
-  getLyric() {
+  getLyric () {
     if (this.lyric) {
       return Promise.resolve(this.lyric)
     }
@@ -46,7 +46,7 @@ export function createSong (musicData) {
 }
 
 function filterSinger (singer) {
-  let ret = []
+  const ret = []
   if (!singer) {
     return ''
   }
@@ -56,7 +56,7 @@ function filterSinger (singer) {
   return ret.join('/')
 }
 
-export function processSongsUrl(songs) {
+export function processSongsUrl (songs) {
   if (!songs.length) {
     return Promise.resolve(songs)
   }

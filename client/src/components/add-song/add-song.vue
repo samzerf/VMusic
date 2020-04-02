@@ -52,7 +52,7 @@ import TopTip from 'base/top-tip/top-tip'
 
 export default {
   mixins: [searchMixin],
-  data() {
+  data () {
     return {
       showFlag: false,
       showSinger: false,
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     ...mapActions(['insertSong']),
-    show() {
+    show () {
       this.showFlag = true
       setTimeout(() => {
         if (this.currentIndex === 0) {
@@ -81,23 +81,23 @@ export default {
         }
       }, 20)
     },
-    hide() {
+    hide () {
       this.showFlag = false
     },
-    switchItem(index) {
+    switchItem (index) {
       this.currentIndex = index
     },
-    selectSong(item, index) {
+    selectSong (item, index) {
       if (index !== 0) {
         this.insertSong(new Song(item))
       }
       this.showTopTips()
     },
-    selectSuggest() {
+    selectSuggest () {
       this.saveSearch()
       this.showTopTips()
     },
-    showTopTips() {
+    showTopTips () {
       this.$refs.topTip.show()
     }
   },

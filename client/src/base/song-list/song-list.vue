@@ -27,19 +27,19 @@ export default {
     }
   },
   methods: {
-    getDesc(song) {
+    getDesc (song) {
       return `${song.singer}·${song.album}`
     },
-    selectItem(item, index) {
+    selectItem (item, index) {
       this.$emit('select', item, index)
     },
-    getRankCls(index) {
+    getRankCls (index) {
       if (index <= 2) {
         return `icon icon${index}`
       }
       return 'text'
     },
-    getRankText(index) {
+    getRankText (index) {
       if (index > 2) {
         return index
       }

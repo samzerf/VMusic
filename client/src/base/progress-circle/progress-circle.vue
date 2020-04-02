@@ -21,11 +21,11 @@ export default {
     }
   },
   computed: {
-    strokeDashOffset() {
+    strokeDashOffset () {
       return (1 - this.percent) * this.strokeDashArray
     }
   },
-  data() {
+  data () {
     return {
       strokeDashArray: Math.PI * 100
     }

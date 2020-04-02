@@ -14,20 +14,20 @@ export default {
       default: 2000
     }
   },
-  data() {
+  data () {
     return {
       showFlag: false
     }
   },
   methods: {
-    show() {
+    show () {
       this.showFlag = true
       this.timer && clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.hide()
       }, this.delay)
     },
-    hide() {
+    hide () {
       this.showFlag = false
     }
   }

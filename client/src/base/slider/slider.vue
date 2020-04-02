@@ -29,13 +29,13 @@ export default {
       default: 4000
     }
   },
-  data() {
+  data () {
     return {
       dots: [],
       currentPageIndex: 0
     }
   },
-  mounted() {
+  mounted () {
     console.log('mounted')
     setTimeout(() => {
       this._setSliderWidth()
@@ -46,23 +46,23 @@ export default {
       }
     }, 20)
   },
-  activated() {
+  activated () {
     console.log('activated')
     if (this.autoPlay) {
       this._play()
     }
   },
-  deactivated() {
+  deactivated () {
     console.log('deactivated')
     this.timer && clearTimeout(this.timer)
   },
   methods: {
-    _setSliderWidth() {
+    _setSliderWidth () {
       this.children = this.$refs.sliderGroup.children
       let width = 0
-      let sliderWidth = this.$refs.slider.clientWidth
+      const sliderWidth = this.$refs.slider.clientWidth
       for (let i = 0, len = this.children.length; i < len; i++) {
-        let child = this.children[i]
+        const child = this.children[i]
         addClass(child, 'slider-item')
         child.style.width = sliderWidth + 'px'
         width += sliderWidth
@@ -73,11 +73,11 @@ export default {
       this.$refs.sliderGroup.style.width = width + 'px'
     },
 
-    _initDots() {
+    _initDots () {
       this.dots = new Array(this.$refs.sliderGroup.children.length)
     },
 
-    _initSlider() {
+    _initSlider () {
       this.slider = new BScroll(this.$refs.slider, {
         scrollX: true,
         scrollY: false,
@@ -96,7 +96,7 @@ export default {
       })
     },
 
-    _play() {
+    _play () {
       this.timer && clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.slider.next()

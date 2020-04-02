@@ -55,13 +55,13 @@ export default {
     Scroll,
     Loading
   },
-  created() {
+  created () {
     this.listenScroll = true
     this.probeType = 3
     this.touch = {}
     this.listHeight = []
   },
-  data() {
+  data () {
     return {
       currentIndex: 0,
       scrollY: -1,
@@ -69,10 +69,10 @@ export default {
     }
   },
   computed: {
-    shortcutList() {
+    shortcutList () {
       return this.data.map(d => d.title.substring(0, 1))
     },
-    fixedTitle() {
+    fixedTitle () {
       if (this.scrollY > 0) {
         return ''
       }
@@ -85,7 +85,7 @@ export default {
         this._calculateListHeight()
       }, 20)
     },
-    scrollY(newY) {
+    scrollY (newY) {
       // 当滚动到顶部，newY>0
       if (newY >= 0) {
         this.currentIndex = 0
@@ -93,8 +93,8 @@ export default {
       }
       // 中间
       for (let i = 0, len = this.listHeight.length - 1; i < len; i++) {
-        let height1 = this.listHeight[i]
-        let height2 = this.listHeight[i + 1]
+        const height1 = this.listHeight[i]
+        const height2 = this.listHeight[i + 1]
         if (-newY >= height1 && -newY < height2) {
           this.currentIndex = i
           this.diff = height2 + newY
@@ -106,8 +106,8 @@ export default {
         this.currentIndex = this.listHeight.length - 2
       }
     },
-    diff(newDiff) {
-      let fixedTop = (newDiff > 0 && newDiff < TITLE_HEIGHT) ? TITLE_HEIGHT - newDiff : 0
+    diff (newDiff) {
+      const fixedTop = (newDiff > 0 && newDiff < TITLE_HEIGHT) ? TITLE_HEIGHT - newDiff : 0
       if (this.fixedTop === fixedTop) {
         return
       }
@@ -116,25 +116,25 @@ export default {
     }
   },
   methods: {
-    selectItem(item) {
+    selectItem (item) {
       this.$emit('select', item)
     },
-    onShortcutTouchStart(e) {
-      let anchorIndex = parseInt(getData(e.target, 'index'))
+    onShortcutTouchStart (e) {
+      const anchorIndex = parseInt(getData(e.target, 'index'))
       this.touch.y1 = e.touches[0].pageY
       this.touch.anchorIndex = anchorIndex
       this._scrollTo(anchorIndex)
     },
-    onShortcutTouchMove(e) {
+    onShortcutTouchMove (e) {
       this.touch.y2 = e.touches[0].pageY
-      let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
-      let anchorIndex = this.touch.anchorIndex + delta
+      const delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
+      const anchorIndex = this.touch.anchorIndex + delta
       this._scrollTo(anchorIndex)
     },
-    scroll(pos) {
+    scroll (pos) {
       this.scrollY = pos.y
     },
-    _scrollTo(index) {
+    _scrollTo (index) {
       if (!index && index !== 0) {
         return
       }
@@ -146,18 +146,18 @@ export default {
       }
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
     },
-    _calculateListHeight() {
+    _calculateListHeight () {
       const listGroup = this.$refs.listGroup
       let height = 0
       this.listHeight = []
       this.listHeight.push(height)
       for (let i = 0, len = listGroup.length; i < len; i++) {
-        let item = listGroup[i]
+        const item = listGroup[i]
         height += item.clientHeight
         this.listHeight.push(height)
       }
     },
-    refresh() {
+    refresh () {
       this.$refs.listview.refresh()
     }
   }

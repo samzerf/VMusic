@@ -37,7 +37,7 @@ import SongList from 'base/song-list/song-list'
 import Loading from 'base/loading/loading'
 import { prefixStyle } from 'common/js/dom'
 import { mapActions } from 'vuex'
-import {playlistMixin} from 'common/js/mixin'
+import { playlistMixin } from 'common/js/mixin'
 const RESOLVED_HEIGHT = 40
 const transform = prefixStyle('transform')
 const backdrop = prefixStyle('backdropFilter')
@@ -61,28 +61,28 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       scrollY: 0
     }
   },
-  created() {
+  created () {
     this.probeType = 3
     this.listenScroll = true
   },
-  mounted() {
+  mounted () {
     this.imageHeight = this.$refs.bgImage.clientHeight
     this.minTranslateY = -this.imageHeight + RESOLVED_HEIGHT
     this.$refs.list.$el.style.top = `${this.imageHeight}px`
   },
   watch: {
-    scrollY(newY) {
+    scrollY (newY) {
       let zIndex = 0
       let scale = 1
       let blur = 0
-      let translateY = Math.max(this.minTranslateY, newY)
-      let bgImageStyle = this.$refs.bgImage.style
-      let playBtnStyle = this.$refs.playBtn.style
+      const translateY = Math.max(this.minTranslateY, newY)
+      const bgImageStyle = this.$refs.bgImage.style
+      const playBtnStyle = this.$refs.playBtn.style
       this.$refs.bgLayer.style[transform] = `translate3d(0, ${translateY}px, 0)`
       const percent = Math.abs(newY / this.imageHeight)
       if (newY > 0) {
@@ -107,29 +107,29 @@ export default {
     }
   },
   computed: {
-    bgStyle() {
+    bgStyle () {
       return `background-image: url(${this.bgImage});`
     }
   },
   methods: {
-    handlePlaylist(playlist) {
+    handlePlaylist (playlist) {
       const bottom = playlist && playlist.length ? '60px' : 0
       this.$refs.list.$el.style.bottom = bottom
       this.$refs.list.refresh()
     },
-    back() {
+    back () {
       this.$router.back()
     },
-    scroll(pos) {
+    scroll (pos) {
       this.scrollY = pos.y
     },
-    selectItem(item, index) {
+    selectItem (item, index) {
       this.selectPlay({
         list: this.songs,
         index
       })
     },
-    random() {
+    random () {
       this.randomPlay({
         list: this.songs
       })
