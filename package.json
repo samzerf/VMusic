@@ -1,7 +1,7 @@
 {
   "name": "vue-music",
   "version": "1.0.0",
-  "description": "the pro of music player ",
+  "description": "a music player ",
   "author": "sanjayf@foxmail.com",
   "private": true,
   "main": "app.js",
