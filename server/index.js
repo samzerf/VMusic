@@ -50,7 +50,7 @@ fs.readdirSync(RoutesDir)
 
 
 module.exports = (opts = {}) => {
-  const server = app.listen(8001,  () => {
+  const server = app.listen(8000,  () => {
     console.log('Koa server listening on %s:%d', server.address().address, server.address().port)
   })
   return server
