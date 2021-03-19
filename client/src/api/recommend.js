@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { commonParams, recommandRequestConfigData } from './config'
+axios.defaults.baseURL = 'https://music.samzherf.cn'
 
 // 获取推荐列表轮播数据
 export function getRecommend () {

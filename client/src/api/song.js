@@ -1,7 +1,7 @@
 import { commonParams, ERR_OK } from './config'
 import { getUid } from 'common/js/uid'
 import axios from 'axios'
-
+axios.defaults.baseURL = 'https://music.samzherf.cn'
 export function getSongsUrl (songs) {
   const url = '/api/getPurlUrl'
   const mids = ['0049T4N609ym6K'] // 发现周杰伦的某些歌，放在mids的第一位会请求不到，这里写死一个hardcode的可以成功的mid

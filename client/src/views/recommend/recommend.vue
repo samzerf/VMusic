@@ -7,7 +7,7 @@
             <slider>
               <div v-for="(item,index) in recommends" :key="index">
                 <a :href="item.linkUrl">
-                  <img @load="loadImages" :src="item.picUrl">
+                  <img width="375" height="150" @load="loadImages" :src="item.picUrl">
                 </a>
               </div>
             </slider>
@@ -75,7 +75,7 @@ export default {
           this.recommends = res.focus.data.content.map(item => {
             return {
               linkUrl: `https://y.qq.com/n/yqq/album/${item.jump_info.url}.html`,
-              picUrl: item.pic_info.url
+              picUrl: item.pic_info.url.replace(/^http(s)?:/, '')
             }
           })
         }
@@ -84,7 +84,12 @@ export default {
     _getDiscList () {
       getDiscList().then(res => {
         if (res.code === ERR_OK) {
-          this.discList = res.data.list
+          this.discList = res.data.list.map(item => {
+            item.imgurl = item.imgurl
+              .replace(/^http(s)?:/, '')
+              .replace(/\/(\d){3}\?/, '/150?')
+            return item
+          })
         }
       })
     },
@@ -130,6 +135,11 @@ export default {
           left: 0
           width: 100%
           height: 100%
+          img
+            display: block
+            width: 100%
+            height: auto
+            aspect-ratio: 37 / 15
       .recommend-list
         .list-title
           height: 65px

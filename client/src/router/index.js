@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const Recommend = () => import(/* webpackChunkName: "recommend" */ 'views/recommend/recommend')
+import Recommend from 'views/recommend/recommend'
 const Rank = () => import(/* webpackChunkName: "rank" */ 'views/rank/rank')
 const Search = () => import(/* webpackChunkName: "search" */ 'views/search/search')
 const Singer = () => import(/* webpackChunkName: "singer" */ 'views/singer/singer')
@@ -13,7 +13,7 @@ const UserCenter = () => import(/* webpackChunkName: "user-center" */ 'views/use
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',

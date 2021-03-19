@@ -1,6 +1,7 @@
 import jsonp from 'common/js/jsonp'
 import { commonParams, options } from './config'
 import axios from 'axios'
+axios.defaults.baseURL = 'https://music.samzherf.cn'
 
 export function getHotKey () {
   const url = 'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg'
